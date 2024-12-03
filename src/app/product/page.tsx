@@ -82,7 +82,7 @@
                     <p className="md:text-base font-bold text-2xl">
                     {`$${post.price}`}
                     </p>
-                    <Link href={`/product/${post.id}`}>
+                    <Link href={`/product/${post.id}?id=${post.id}`}>
                     <div className="text-customGreen border-2 border-customGreen px-5 py-2 rounded-md cursor-pointer hover:bg-green-700 hover:text-white w-fit">
                     Add Cart
                   </div>

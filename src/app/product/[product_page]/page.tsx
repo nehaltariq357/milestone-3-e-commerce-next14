@@ -10,22 +10,22 @@ interface types {
 }
 
 const ProductPage = ({ params }: { params: { product_page: string } }) => {
-  // Change the state type to a single product object, not an array
+  
   const [product, setProduct] = useState<types | null>(null);
 
-  // Fetch data inside a useEffect hook to ensure it runs after the component mounts
+  
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`http://localhost:3000/api/product/${params.product_page}`);
+      const response = await fetch(`http://localhost:3000/api/product?id=${params.product_page}`);
       const data = await response.json();
       setProduct(data);
     };
     fetchPosts();
-  }, [params.product_page]); // Only re-fetch when the product_page param changes
+  }, [params.product_page]); 
 
-  // Render loading or error state if product is not loaded yet
+ 
   if (!product) {
-    return <div>Loading...</div>;  // Show loading if product is not yet loaded
+    return <div>Loading...</div>;  
   }
 
   return (
