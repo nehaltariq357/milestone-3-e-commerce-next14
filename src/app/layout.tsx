@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "./component/Footer/page";
 import NavBar from "./component/NavBar/page";
+import ClientProvider from "./redux/store/ClientProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,9 +30,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      ><NavBar/>
-        {children}
-        {/* <Footer/> */}
+      >
+        <ClientProvider>
+          <NavBar />
+          {children}
+          <Footer />
+        </ClientProvider>
       </body>
     </html>
   );

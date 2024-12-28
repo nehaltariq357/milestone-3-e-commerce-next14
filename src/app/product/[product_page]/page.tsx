@@ -1,6 +1,10 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { useAppDispatch } from "../../redux/store/slice/hooks";
+import { addToCart } from "../../redux/store/slice/cartSlice";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface types {
   title: string;
@@ -13,10 +17,13 @@ interface types {
 
 const ProductPage = ({ params }: { params: { product_page: string } }) => {
   const [product, setProduct] = useState<types | null>(null);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`http://localhost:3000/api/product?id=${params.product_page}`);
+      const response = await fetch(
+        `http://localhost:3000/api/product?id=${params.product_page}`
+      );
       const data = await response.json();
       setProduct(data);
     };
@@ -26,6 +33,21 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
   if (!product) {
     return <div>Loading...</div>;
   }
+
+  const handleAddToCart = (item: types) => {
+    dispatch(
+      addToCart({
+        id: item.id,
+        title: item.title,
+        price: item.price,
+        image: item.image,
+        quantity: 1,
+      })
+    );
+    toast.success("Item added to cart!", {
+         position: "top-right",
+       });
+  };
 
   return (
     <main className="min-h-screen flex items-center justify-center px-4 md:px-10 lg:px-20">
@@ -52,12 +74,16 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
             <p className="text-sm text-gray-500">{product.desc}</p>
 
             {/* Add to Cart Button */}
-            <button className="text-white bg-green-600 px-5 py-2 rounded-md cursor-pointer hover:bg-green-700">
+            <button
+              onClick={() => handleAddToCart(product)}
+              className="text-white bg-green-600 px-5 py-2 rounded-md cursor-pointer hover:bg-green-700"
+            >
               Add to Cart
             </button>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </main>
   );
 };
