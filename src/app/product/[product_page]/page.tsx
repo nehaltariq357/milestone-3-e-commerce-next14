@@ -21,9 +21,7 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(
-        `http://localhost:3000/api/product?id=${params.product_page}`
-      );
+      const response = await fetch(`/api/product?id=${params.product_page}`);
       const data = await response.json();
       setProduct(data);
     };
@@ -45,14 +43,16 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
       })
     );
     toast.success("Item added to cart!", {
-         position: "top-right",
-       });
+      position: "top-right",
+    });
   };
 
   return (
     <main className="min-h-screen flex items-center justify-center px-4 md:px-10 lg:px-20">
       <div className="w-full max-w-4xl bg-white p-10 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold mb-10 text-center">{product.title}</h1>
+        <h1 className="text-3xl font-bold mb-10 text-center">
+          {product.title}
+        </h1>
 
         {/* Product Details */}
         <div className="flex flex-col md:flex-row gap-10">
