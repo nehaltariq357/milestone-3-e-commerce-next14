@@ -43,7 +43,7 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
       })
     );
     toast.success("Item added to cart!", {
-      position: "top-right",
+      position: "top-center",
     });
   };
 

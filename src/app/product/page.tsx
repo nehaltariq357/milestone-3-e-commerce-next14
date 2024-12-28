@@ -39,7 +39,7 @@ const Product = () => {
       })
     );
     toast.success("Item added to cart!", {
-      position: "top-right",
+      position: "top-center",
     });
   };
 
