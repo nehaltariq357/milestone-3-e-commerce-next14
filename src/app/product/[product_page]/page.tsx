@@ -21,7 +21,7 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/product?id=${params.product_page}`);
+      const response = await fetch(`/api/product?id=${params.product_page}`);// for production site, we use http://localhost:3000/api/product
       const data = await response.json();
       setProduct(data);
     };

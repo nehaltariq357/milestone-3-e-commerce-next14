@@ -21,7 +21,7 @@ const Product = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/product`);
+      const response = await fetch(`/api/product`);  // for production site, we use http://localhost:3000/api/product
       const data = await response.json();
       setProduct(data);
     };
@@ -45,12 +45,12 @@ const Product = () => {
 
   return (
     <main className="px-4 md:px-10 lg:px-20 min-h-screen">
-      <h1 className="text-3xl font-bold my-10">Featured Products</h1>
+      <h1 className="text-3xl font-bold my-5 mt-20">Featured Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {product.map((post) => (
           <div key={post.id} className="my-10">
             <div className="space-y-5 w-full md:w-[90%]">
-              <Link href={`/product/${post.id}`}>
+              <Link href={`/product/${post.id}`}> 
                 <Image
                   src={post.image}
                   alt={post.title}

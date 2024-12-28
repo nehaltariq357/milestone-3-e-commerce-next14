@@ -14,13 +14,15 @@ const Cart = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <main className="px-4 sm:px-6 lg:px-20 min-h-screen ">
-      <h1 className="text-2xl sm:text-3xl font-bold my-8 sm:my-10 absolute ">
+    <main className="px-4 sm:px-6 lg:px-20 min-h-screen">
+      {/* Heading with margin for top spacing */}
+      <h1 className="text-2xl sm:text-3xl font-bold my-8 sm:my-10 mt-14 absolute top-10">
         Your Cart
       </h1>
 
+      {/* Check if cart is empty or not */}
       {cartItems.length > 0 ? (
-        <div className="space-y-6">
+        <div className="space-y-6 mt-36">
           {cartItems.map((item) => (
             <div
               key={item.id}
@@ -51,6 +53,7 @@ const Cart = () => {
                   Remove
                 </button>
               </div>
+              {/* Product Image */}
               <Image
                 src={item.image}
                 alt={item.title}
@@ -60,6 +63,7 @@ const Cart = () => {
               />
             </div>
           ))}
+          {/* Total Amount */}
           <div className="font-bold text-xl sm:text-2xl mt-8 sm:mt-10">
             Total Amount:{" "}
             <span className="text-green-600">${totalAmount.toFixed(2)}</span>
