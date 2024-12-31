@@ -14,9 +14,12 @@ const Cart = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <main className="px-4 sm:px-6 lg:px-20 min-h-screen">
+    <main
+      className="px-4 sm:px-6 lg:px-20 min-h-screen text-black"
+      style={{ backgroundColor: "white" }} // Explicit white background
+    >
       {/* Heading with margin for top spacing */}
-      <h1 className="text-2xl sm:text-3xl font-bold my-8 sm:my-10 mt-14 absolute top-10">
+      <h1 className="text-2xl sm:text-3xl font-bold my-8 sm:my-10 mt-14 absolute top-10 bg-white">
         Your Cart
       </h1>
 

@@ -4,7 +4,7 @@ import Banner from "./component/Bannner/page";
 export default function Home() {
   return (
     <div>
-      <Banner />
+      <Banner/>
       <Product />
     </div>
   );

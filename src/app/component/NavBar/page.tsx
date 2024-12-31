@@ -9,8 +9,8 @@ const NavBar = () => {
   const [isopen, setopen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white z-50">
-      <div className="container mx-auto flex items-center justify-between h-16 px-4 md:px-8">
+    <nav className="fixed top-0 left-0 w-full bg-white z-50 text-black m-0">
+      <div className="container mx-auto flex items-center justify-between h-20 px-4 md:px-8">
         {/* Logo and Brand Name */}
         <ul className="flex items-center gap-4">
           <li>

@@ -48,7 +48,7 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center px-4 md:px-10 lg:px-20">
+    <main className="min-h-screen flex items-center justify-center px-4 md:px-10 lg:px-20 bg-white text-black">
       <div className="w-full max-w-4xl bg-white p-10 rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold mb-10 text-center">
           {product.title}
