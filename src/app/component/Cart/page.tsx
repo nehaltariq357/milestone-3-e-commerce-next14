@@ -15,17 +15,16 @@ const Cart = () => {
 
   return (
     <main
-      className="px-4 sm:px-6 lg:px-20 min-h-screen text-black"
-      style={{ backgroundColor: "white" }} // Explicit white background
+      className="px-4 sm:px-6 lg:px-20 min-h-screen bg-white text-black"
     >
-      {/* Heading with margin for top spacing */}
-      <h1 className="text-2xl sm:text-3xl font-bold my-8 sm:my-10 mt-14 absolute top-10 bg-white">
-        Your Cart
+      {/* Heading with proper margin */}
+      <h1 className="text-2xl sm:text-3xl font-bold my-8 sm:my-10 py-10">
+        Cart Items
       </h1>
 
       {/* Check if cart is empty or not */}
       {cartItems.length > 0 ? (
-        <div className="space-y-6 mt-36">
+        <div className="space-y-6 mt-8">
           {cartItems.map((item) => (
             <div
               key={item.id}
