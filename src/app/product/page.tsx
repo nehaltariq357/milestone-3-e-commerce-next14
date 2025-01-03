@@ -6,13 +6,15 @@ import { useAppDispatch } from "../redux/store/slice/hooks";
 import { addToCart } from "../redux/store/slice/cartSlice";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
 interface types {
   title: string;
   price: number;
   id: number;
-  image: string;
-  desc: string;
+  image: string
+  slug: string;
 }
 
 const Product = () => {
@@ -21,9 +23,15 @@ const Product = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/product`); // Adjust for production
-      const data = await response.json();
-      setProduct(data);
+      const query = `*[_type == "products"]{
+        title,
+        price,
+        "image": productImage, 
+        "slug": slug.current
+    }[]`;
+
+      const products = await client.fetch(query);
+      setProduct(products);
     };
     fetchPosts();
   }, []);
@@ -53,9 +61,9 @@ const Product = () => {
         {product.map((post) => (
           <div key={post.id} className="my-10">
             <div className="space-y-5 w-full md:w-[90%]">
-              <Link href={`/product/${post.id}`}>
+              <Link href={`/product/${post.slug}`}>
                 <Image
-                  src={post.image}
+                  src={urlFor(post.image).url()}
                   alt={post.title}
                   className="w-full h-auto object-cover"
                   width={500}
@@ -68,7 +76,7 @@ const Product = () => {
                   {`$${post.price}`}
                 </p>
               </Link>
-              <p className="text-sm md:text-base">{post.desc}</p>
+           
               <button
                 onClick={() => handleAddToCart(post)}
                 className="text-customGreen border-2 border-customGreen px-5 py-2 rounded-md cursor-pointer hover:bg-green-700 hover:text-white w-fit"
